@@ -4,7 +4,6 @@ import Mongoose from 'mongoose';
 import Cors from 'cors';
 
 const App = Express();
-const DB_CONNECTION = 'mongodb+srv://erfanhanifezade:erfanhanifezadeMemories@cluster0.vhhdf.mongodb.net/Memories?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5555;
 
 //MiddleWare
@@ -14,7 +13,7 @@ App.use(Cors());
 
 //Data Base Connecting
 Mongoose.connect(
-    DB_CONNECTION,
+    process.env.DB,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
