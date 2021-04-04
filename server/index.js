@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import Express from 'express';
 import BodyParser from 'body-parser';
 import Mongoose from 'mongoose';
