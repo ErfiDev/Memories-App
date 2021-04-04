@@ -1,4 +1,8 @@
 import React,{Fragment} from 'react';
+import Header from './header/header';
+import Main from './main/main';
+
+import './styles/App.scss';
 
 class App extends React.Component
 {
@@ -6,7 +10,8 @@ class App extends React.Component
     {
         return(
             <Fragment>
-                Hello World!!
+                <Header />
+                <Main />
             </Fragment>
         );
     }
