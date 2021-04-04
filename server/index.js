@@ -1,11 +1,13 @@
-import dotenv from 'dotenv';
-dotenv.config();
-import Express from 'express';
-import BodyParser from 'body-parser';
-import Mongoose from 'mongoose';
-import Cors from 'cors';
+const dotenv = require('dotenv').config();
+const express = require('express');
+const BodyParser = require('body-parser');
+const Mongoose = require('mongoose');
+const Cors = require('cors');
 
-const App = Express();
+//Route
+const Post = require('./routes/post');
+
+const App = express();
 const PORT = process.env.PORT || 5555;
 
 //MiddleWare
@@ -23,3 +25,6 @@ Mongoose.connect(
 ).then(()=> App.listen(PORT , ()=> console.log(`Server Starting on ${PORT}`)))
 .catch(err => console.log(err.message));
 Mongoose.set('useFindAndModify' , false);
+
+//Use Router
+App.use('/post' , Post);
