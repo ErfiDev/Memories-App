@@ -1,4 +1,7 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import initData from '../../Actions/initData';
+
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -32,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ()=>{
     const classes = useStyles();
+
+    const dis = useDispatch();
 
     return ( 
         <div id="post-container">
@@ -101,6 +106,7 @@ const Form = ()=>{
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={()=> dis(initData())}
                         >
                             POST
                         </Button>
@@ -113,19 +119,18 @@ const Form = ()=>{
                         >
                             CLEAR
                         </Button>
-                        <Button
-                            type="button"
-                            fullWidth
-                            variant="contained"
-                            className={classes.submit}
-                        >
-                            <Link 
-                                to="/" 
-                                style={{textDecoration: 'none' , color: 'inherit'}}
-                                >
+                        <Link 
+                            to="/" 
+                            style={{textDecoration: 'none' , color: 'inherit'}}>
+                            <Button
+                                type="button"
+                                fullWidth
+                                variant="contained"
+                                className={classes.submit}
+                            >
                                 GO HOME
-                            </Link>
-                        </Button>
+                            </Button>
+                         </Link>
                     </form>
                 </div>
             </Container>

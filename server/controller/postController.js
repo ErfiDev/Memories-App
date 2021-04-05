@@ -1,8 +1,16 @@
 const MessageSchema = require('../models/postMessage'); 
 
-async function getPost(req , res)
+async function init(req , res)
 {
-    await res.send('hello worlds!');
+    try
+    {
+        const Data = await MessageSchema.find();
+        res.json(Data);
+    }
+    catch(err)
+    {
+        res.json({err});
+    }
 }
 
 async function createPost(req , res)
@@ -26,11 +34,6 @@ async function createPost(req , res)
                     await data.save();
 
                     res.status(201).json(data);
-                    // .then(data => res.json({
-                    //     data,
-                    //     status: 200
-                    // }))
-                    // .catch(err => res.json(err));
                 }catch(err){res.json({err , status: 501})}
             }
         } 
@@ -46,6 +49,6 @@ async function createPost(req , res)
 }
 
 module.exports = {
-    getPost,
+    init,
     createPost
 };

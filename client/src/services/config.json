@@ -1,0 +1,4 @@
+{
+    "get": "http://localhost:5555/post/init",
+    "post": "http://localhost:5555/post/create"
+}

@@ -6,14 +6,14 @@ class Nav extends Component {
     render() { 
         return (  
             <div id="nav">
-                <Button variant="contained" color="perimary" size="sm" >
-                    <Link 
-                        to="/createPost" 
-                        style={{textDecoration: 'none' , color: 'inherit'}}
-                        >
+                <Link 
+                    to="/createPost" 
+                    style={{textDecoration: 'none' , color: 'inherit'}}
+                    >
+                    <Button variant="contained" color="perimary" size="sm" >
                         Add Memorie
-                    </Link>
-                </Button>
+                    </Button>
+                </Link>
             </div>
         );
     }

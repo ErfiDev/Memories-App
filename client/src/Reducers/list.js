@@ -1,4 +1,4 @@
-function List(state = {} , action)
+function List(state = [] , action)
 {
     switch(action.type)
     {

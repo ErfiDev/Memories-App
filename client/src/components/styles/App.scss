@@ -126,6 +126,81 @@ html{
     }
 }
 
+#footer{
+    min-width: 95vw;
+    width: auto;
+    min-height: 250px;
+    height: auto;
+    @include flex(space-around , center);
+    flex-direction: column;
+    margin: 20px 0 20px 0;
+    background: rgba(255, 255, 255, 0.089);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.123);
+    p{
+        font-size: 1.2rem;
+        text-align: center;
+        color: white;
+    }
+    #footer-div{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+    }
+    #think{
+        background-color: rgba(0, 0, 0, 0.918);
+        color: black;
+        transition:all 0.3s ease-out;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.11);
+            color: white;
+        }
+    }
+    #email-me{
+        padding: 5px 20px 5px 20px;
+        background-color: rgba(248, 248, 248, 0.123);
+        transition: all 0.3s ease-out;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        color: rgb(248, 248, 248);
+    }
+}
+
+@media only screen and (max-width: 730px)
+{
+    #footer-div{
+        display: block !important;
+    }
+}
+
+@media only screen and (max-width: 546px)
+{
+    #think{
+        padding: 0px !important;
+    }
+    #email-me{
+        padding: 5px !important; 
+    }
+}
+
+@media only screen and (max-width: 470px)
+{
+    #footer p{
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 380px)
+{
+    #footer p{
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 400px)
 {
     #header{
