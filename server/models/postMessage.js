@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const Message = mongoose.Schema({
     title: String,
-    message: String,
+    description: String,
     creator: String,
     tags: [String],
     file: String,

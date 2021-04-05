@@ -33,6 +33,7 @@ html{
     position: relative;
     @include flex(flex-start , center);
     flex-direction: column;
+    transition: all 0.5s ease;
     &::-webkit-scrollbar{
         width: 10px;
     }&::-webkit-scrollbar-button{
@@ -49,8 +50,6 @@ html{
     min-width: 80vw;
     width: auto;
     background: rgba(255, 255, 255, 0.089);
-    backdrop-filter: blur( 0.0px );
-    -webkit-backdrop-filter: blur( 0.0px );
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.123);
     min-height: 80px;
@@ -75,23 +74,42 @@ html{
     }
 }
 
+#nav{
+    width: 70vw;
+    min-height: 10vh;
+    height: auto;
+    background: rgba(255, 255, 255, 0.089);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.123);
+    margin-top: 2vh;
+    @include flex(center , center);
+}
+
 #main{
     min-width: 95vw;
     width: auto;
     height: auto;
-    #{$bc}: blue;
-    margin-top: 15px;
+    margin: 15px 0 15px 0;
     background: rgba(255, 255, 255, 0.089);
-    backdrop-filter: blur( 0.0px );
-    -webkit-backdrop-filter: blur( 0.0px );
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.123);
-    @include grid(1fr,1fr);
+    @include flex(center , center);
+    padding: 25px;
+
+    #not-have{
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.411);
+        height: 60vh;
+        @include flex(center , center);
+    }
 
     #memories-container{
         @include flex(space-around , flex-start);
         flex-wrap: wrap;
         padding: 2%;
+        width: 95%;
+        min-height: 60vh;
+        height: auto;
         .memories{
             width: 28%;
             min-height: 400px;
@@ -101,8 +119,10 @@ html{
         }
     }
     #post-container{
-        #{$bc}: blue;
+        #{$bc}: rgba(255, 255, 255, 0.568);
         @include flex(center , center);
+        padding: 20px;
+        border-radius: 10px;
     }
 }
 
