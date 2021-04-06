@@ -1,6 +1,4 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
-import initData from '../../Actions/initData';
 
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
@@ -35,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ()=>{
     const classes = useStyles();
-
-    const dis = useDispatch();
 
     return ( 
         <div id="post-container">
@@ -106,7 +102,6 @@ const Form = ()=>{
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={()=> dis(initData())}
                         >
                             POST
                         </Button>

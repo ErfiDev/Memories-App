@@ -41,7 +41,8 @@ html{
         height: 0;
     }&::-webkit-scrollbar-thumb{
         width: 100%;
-        background-color: #9e9e9e;
+        background: rgba(255, 255, 255, 0.301);
+        border: 1px solid rgba(255, 255, 255, 0.123);
     }
 }
 
@@ -118,12 +119,6 @@ html{
             margin: 0 0 20px 0;
         }
     }
-    #post-container{
-        #{$bc}: rgba(255, 255, 255, 0.568);
-        @include flex(center , center);
-        padding: 20px;
-        border-radius: 10px;
-    }
 }
 
 #footer{
@@ -170,6 +165,7 @@ html{
     }
 }
 
+
 @media only screen and (max-width: 730px)
 {
     #footer-div{
@@ -184,6 +180,9 @@ html{
     }
     #email-me{
         padding: 5px !important; 
+    }
+    #card{
+        width: 75vw !important;
     }
 }
 

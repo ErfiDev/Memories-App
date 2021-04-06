@@ -5,6 +5,9 @@ function List(state = [] , action)
         case 'INIT_LIST':
             return action.payload;
 
+        case 'CREATE_POST':
+            return action.payload;
+
         default: return state;
     }
 }

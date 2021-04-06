@@ -2,7 +2,7 @@ import {getHTTP} from '../services/httpService';
 
 function initData()
 {
-    return async(dispatch , getState)=>{
+    return async(dispatch)=>{
         try
         {
             const data = await getHTTP();
