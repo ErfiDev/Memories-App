@@ -15,7 +15,7 @@ const Message = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    _id: {
+    uuid: {
         type: String,
         default: uuidv4()
     }

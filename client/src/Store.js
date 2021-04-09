@@ -1,7 +1,6 @@
 import {createStore , applyMiddleware , compose} from 'redux';
 import thunk from 'redux-thunk';
 import Reducers from './Reducers/index';
-import initAction from './Actions/initData';
 
 const Store = createStore(
     Reducers,
@@ -11,6 +10,5 @@ const Store = createStore(
     )
 );
 
-Store.dispatch(initAction());
 
 export default Store;

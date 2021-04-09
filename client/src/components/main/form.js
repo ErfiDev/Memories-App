@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React,{useState} from 'react';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,8 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FileBase from 'react-file-base64';
 
-import FileInput from './fileInput';
+import {useDispatch} from 'react-redux';
+import postAction from '../../Actions/post';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,6 +34,39 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ()=>{
     const classes = useStyles();
+    const dis = useDispatch();
+    const [title , setTitle] = useState('');
+    const [description , setDescription] = useState('');
+    const [creator , setCreator] = useState('');
+    const [file , setFile] = useState('');
+    const [tags , setTag] = useState('');
+
+    function submit(e)
+    {
+        e.preventDefault();
+        try{
+            let split = tags.split(' ');
+            const data = {
+                title,
+                description,
+                file,
+                tags: split,
+                creator
+            };
+
+            dis(postAction(JSON.stringify(data)));
+            clearStates();
+        }catch(err){console.log(err)}
+    }
+
+    function clearStates()
+    {
+        setTitle('');
+        setDescription('');
+        setCreator('');
+        setTag('');
+        setFile('');
+    }
 
     return ( 
         <div id="post-container">
@@ -45,16 +79,18 @@ const Form = ()=>{
                         CREATE NEW POST
                     </Typography>
 
-                    <form className={classes.form}>
+                    <form onSubmit={e => submit(e)} className={classes.form}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="title"
-                                    label="Title"
-                                    name="title"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="title"
+                                label="Title"
+                                name="title"
+                                onChange={e => setTitle(e.target.value)}
+                                value={title}
                                 />
                             </Grid>
 
@@ -66,6 +102,8 @@ const Form = ()=>{
                                     label="description"
                                     type="text"
                                     id="description"
+                                    onChange={e => setDescription(e.target.value)}
+                                    value={description}
                                 />
                             </Grid>
 
@@ -77,6 +115,8 @@ const Form = ()=>{
                                     label="creator"
                                     type="text"
                                     id="creator"
+                                    onChange={e => setCreator(e.target.value)}
+                                    value={creator}
                                 />
                             </Grid>
 
@@ -88,16 +128,22 @@ const Form = ()=>{
                                     label="tags"
                                     type="text"
                                     id="tags"
+                                    onChange={e => setTag(e.target.value)}
+                                    value={tags}
                                 />
                             </Grid>
 
                             <Grid item xs={12}>
-                                <FileInput />
+                                <FileBase 
+                                type="file" 
+                                multiple={false} 
+                                onDone={({ base64 }) => setFile(base64)} 
+                                />
                             </Grid>
                         </Grid>
 
                         <Button
-                            type="button"
+                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
@@ -111,6 +157,7 @@ const Form = ()=>{
                             variant="contained"
                             color="secondary"
                             className={classes.submit}
+                            onClick={clearStates}
                         >
                             CLEAR
                         </Button>

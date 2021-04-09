@@ -8,7 +8,7 @@ class Main extends Component {
         return (  
             <main id="main">
                 <Switch>
-                    <Route path="/createPost" exact component={Form} />
+                    <Route path="/createPost" component={Form} />
                     <Route path="/" exact component={Layout} />
                 </Switch>
             </main>

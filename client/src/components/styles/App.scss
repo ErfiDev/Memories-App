@@ -119,6 +119,12 @@ html{
             margin: 0 0 20px 0;
         }
     }
+    #post-container{
+        #{$bc}: rgba(255, 255, 255, 0.87);
+        @include flex(center , center);
+        padding: 20px;
+        border-radius: 10px;
+    }
 }
 
 #footer{

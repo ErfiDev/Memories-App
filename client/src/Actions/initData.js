@@ -6,7 +6,7 @@ function initData()
         try
         {
             const data = await getHTTP();
-            await dispatch({type: 'INIT_LIST' , payload: data});
+            await dispatch({type: 'INIT_LIST' , payload: data.data});
         }
         catch(err){console.log(err)}
     }

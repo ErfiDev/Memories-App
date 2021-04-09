@@ -1,19 +1,15 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
-const BodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 const Cors = require('cors');
-
-//Route
-const Post = require('./routes/post');
-
 const App = express();
 const PORT = process.env.PORT || 5555;
 
 //MiddleWare
-App.use(BodyParser.json({ limit: '30mb' , extended: true }));
-App.use(BodyParser.urlencoded({ limit: '30mb' , extended: true }));
 App.use(Cors());
+App.use(bodyParser.json({ limit: '30mb' , extended: true }));
+App.use(bodyParser.urlencoded({ limit: '30mb' , extended: true }));
 
 //Data Base Connecting
 Mongoose.connect(
@@ -26,5 +22,6 @@ Mongoose.connect(
 .catch(err => console.log(err.message));
 Mongoose.set('useFindAndModify' , false);
 
-//Use Router
-App.use('/post' , Post);
+//Route
+const Post = require('./routes/post');
+App.use('/api' , Post);

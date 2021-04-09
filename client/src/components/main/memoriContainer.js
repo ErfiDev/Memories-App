@@ -4,12 +4,10 @@ import Post from './Post';
 
 class MemorieContainer extends Component {
     render() {
-
-        let {data} = this.props;
-
+        let {list} = this.props;
         return (  
             <div id="memories-container">
-                {data.map(item => (
+                {list.map(item => (
                     <Post 
                         id={item._id} 
                         title={item.title} 
@@ -26,6 +24,6 @@ class MemorieContainer extends Component {
     }
 }
 
-function mapStateToProps(state){ return state.list }
+function mapStateToProps(state){ return state }
  
 export default connect(mapStateToProps)(MemorieContainer);
