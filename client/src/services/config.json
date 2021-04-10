@@ -1,4 +1,6 @@
 {
     "get": "http://localhost:5555/api/init",
-    "post": "http://localhost:5555/api/create"
+    "post": "http://localhost:5555/api/create",
+    "findOne": "http://localhost:5555/api/findOne",
+    "editOne": "http://localhost:5555/api/edit/"
 }

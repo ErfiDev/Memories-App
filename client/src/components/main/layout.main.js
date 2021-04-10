@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-// import {isEmpty} from 'lodash';
+import {isEmpty} from 'lodash';
 import {connect} from 'react-redux';
 import MemorieContainer from './memoriContainer';
 import NotHave from './notHave';
@@ -17,11 +17,17 @@ class LayoutMain extends Component {
         const {list} = this.props;
         return (  
             <Fragment>
-                {list.length <= 0 ? (
-                    <NotHave />
-                ) : (
-                    <MemorieContainer />
-                )}
+                {list.err ? (
+                    <NotHave msg={list.err.message} />
+                ) : 
+                    isEmpty(list) ? (
+                        <NotHave />
+                    ) : (
+                        <MemorieContainer />
+                    )
+                }
+
+                {}
             </Fragment>
         );
     }

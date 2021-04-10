@@ -52,7 +52,14 @@ const createPost = async (req , res)=>
     }catch(err){ res.json({msg: err}) }
 }
 
+const editPost = async (req , res)=>{
+    let {id: _id} = await req.params;
+    let data = await MessageSchema.findById(_id);
+    res.status(200).json(data);
+}
+
 module.exports = {
     init,
-    createPost
+    createPost,
+    editPost
 };

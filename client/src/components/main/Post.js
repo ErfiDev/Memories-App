@@ -1,14 +1,19 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
+import {useDispatch} from 'react-redux';
+import findOne from '../../Actions/findOne';
+
 import useStyles from './styles';
 
 const Post = ({id,title,description,like,date,creator,file,tags}) => {
   const classes = useStyles();
+  const dis = useDispatch();
 
   return (
     <Card id="card" className={classes.card}>
@@ -21,9 +26,16 @@ const Post = ({id,title,description,like,date,creator,file,tags}) => {
         <Typography variant="h6">{creator}</Typography>
         <Typography variant="body2">{moment(date).fromNow()}</Typography>
       </div>
-      <div className={classes.overlay2}>
-        <Button style={{ color: 'white' }} size="small"><MoreHorizIcon fontSize="default" /></Button>
-      </div>
+      <Link to="/update">
+        <div className={classes.overlay2} onClick={()=> dis(findOne(id))}>
+          <Button 
+            style={{ color: 'white' }} 
+              size="small"
+              >
+            <MoreHorizIcon fontSize="default" />
+          </Button>
+        </div>
+      </Link>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary" component="h2">{tags.map((tag) => `#${tag} `)}</Typography>
       </div>
