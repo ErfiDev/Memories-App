@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const Mongoose = require('mongoose');
@@ -23,5 +23,5 @@ Mongoose.connect(
 Mongoose.set('useFindAndModify' , false);
 
 //Route
-const Post = require('./routes/post');
-App.use('/api' , Post);
+const Routes = require('./routes/index');
+App.use('/api' , Routes);

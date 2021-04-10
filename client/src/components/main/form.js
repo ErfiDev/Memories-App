@@ -9,8 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FileBase from 'react-file-base64';
 
-import {useDispatch} from 'react-redux';
-import postAction from '../../Actions/post';
+import { postHTTP } from '../../services/httpService';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,28 +34,47 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ()=>{
     const classes = useStyles();
-    const dis = useDispatch();
     const [title , setTitle] = useState('');
     const [description , setDescription] = useState('');
     const [creator , setCreator] = useState('');
     const [file , setFile] = useState('');
     const [tags , setTag] = useState('');
 
-    function submit(e)
+    async function submit(e)
     {
         e.preventDefault();
         try{
             let split = tags.split(' ');
-            const data = {
+            const d = {
                 title,
                 description,
                 file,
                 tags: split,
                 creator
             };
-
-            dis(postAction(JSON.stringify(data)));
-            clearStates();
+            const {data} = await postHTTP(d);
+            if(data.status === 201)
+            {   
+                clearStates();
+                return toast.success('Created Successfully!' , {
+                    position: 'bottom-left',
+                    closeOnClick: true
+                });
+            }
+            if(data.status === 401)
+            { 
+                return toast.info(data.msg , {
+                    position: 'bottom-left',
+                    closeOnClick: true
+                });
+            }
+            if(data.status === 406)
+            { 
+                return toast.error(data.msg , {
+                    position: 'bottom-left',
+                    closeOnClick: true
+                });
+            }
         }catch(err){console.log(err)}
     }
 
