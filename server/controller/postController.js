@@ -54,8 +54,11 @@ const createPost = async (req , res)=>
 
 const findOnePost = async (req , res)=>{
     let {id: _id} = await req.params;
-    let data = await MessageSchema.findById(_id);
-    res.status(200).json(data);
+    try{
+        let data = await MessageSchema.findById(_id);
+        res.status(200).json(data);
+    }
+    catch(err){ res.json({msg: err}) }
 }
 
 const updatePost = async (req , res)=>{
