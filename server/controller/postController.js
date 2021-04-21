@@ -92,9 +92,57 @@ const updatePost = async (req , res)=>{
     }
 }
 
+async function like(req , res){
+    const {uuid} = req.params;
+    if(!uuid){
+        return res.json({
+            msg: 'Please complete require parametr!',
+            status: 406
+        });
+    }else{
+        await MessageSchema.findOneAndUpdate(
+            {uuid},
+            {
+                $inc: {
+                    likeCount: 1
+                }
+            }
+        )
+
+        res.json({
+            status: 200
+        });
+    }
+}
+
+async function unLike(req , res){
+    const {uuid} = req.params;
+    if(!uuid){
+        return res.json({
+            msg: 'Please complete required parametr!',
+            status: 406
+        });
+    }else{
+        await MessageSchema.updateOne(
+            {uuid},
+            {
+                $inc: {
+                    likeCount: -1
+                }
+            }
+        );
+
+        res.json({
+            status: 200
+        })
+    }
+}
+
 module.exports = {
     init,
     createPost,
     findOnePost,
-    updatePost
+    updatePost,
+    like,
+    unLike
 };

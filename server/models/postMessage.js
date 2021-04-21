@@ -17,7 +17,7 @@ const Message = mongoose.Schema({
     },
     uuid: {
         type: String,
-        default: uuidv4()
+        default: ()=> uuidv4()
     }
 });
 

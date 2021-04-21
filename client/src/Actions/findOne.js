@@ -1,10 +1,9 @@
-import {findOneHTTP} from '../services/httpService';
-
 function findOne(id)
 {
-    return async (dispatch)=>{
-        let {data} = await findOneHTTP(id);
-        let {title , description , creator, tags , _id} = data;
+    return async (dispatch , getState)=>{
+        let list = getState().List;
+        let filter = list.filter(item => item._id === id);
+        let {title , description , creator, tags , _id} = filter[0];
         let convertTagsToString = tags.join(' ');
 
         await dispatch({type: 'TITLE', payload: title});

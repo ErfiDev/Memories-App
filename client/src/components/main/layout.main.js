@@ -1,42 +1,32 @@
-import React, { Component, Fragment } from 'react';
+import React, {Fragment,useEffect} from 'react';
 import {isEmpty} from 'lodash';
-import {connect} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import MemorieContainer from './memoriContainer';
 import NotHave from './notHave';
-import initAction from '../../Actions/initData';
+import initData from '../../Actions/initData';
 
-class LayoutMain extends Component {
+const Layout = () => {
+    const List = useSelector(state => state.List);
+    const dis = useDispatch();
 
-    componentDidMount()
-    {
-        const {dispatch: dis} = this.props;
-        dis(initAction());
-    }
+    useEffect(()=>{
+        dis(initData());
+        // eslint-disable-next-line
+    } , []);
 
-    render() { 
-        const {list} = this.props;
-        
-        return (  
-            <Fragment>
-                {list.err ? (
-                    <NotHave msg={list.err.message} />
-                ) : 
-                    isEmpty(list) ? (
-                        <NotHave />
-                    ) : (
-                        <MemorieContainer />
-                    )
-                }
-
-                {}
-            </Fragment>
-        );
-    }
-}
-
-function mapStateToProp(state)
-{
-    return state;
+    return (  
+        <Fragment>
+            {List.err ? (
+                <NotHave msg={List.err.message} />
+            ) : 
+                isEmpty(List) ? (
+                    <NotHave />
+                ) : (
+                    <MemorieContainer />
+                )
+            }
+        </Fragment>
+    );
 }
  
-export default connect(mapStateToProp)(LayoutMain);
+export default Layout;

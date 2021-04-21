@@ -4,10 +4,10 @@ import Post from './Post';
 
 class MemorieContainer extends Component {
     render() {
-        let {list} = this.props;
+        const {List} = this.props;
         return (  
             <div id="memories-container">
-                {list.map(item => (
+                {List.map(item => (
                     <Post 
                         id={item._id} 
                         title={item.title} 
@@ -17,6 +17,7 @@ class MemorieContainer extends Component {
                         date={item.createdAt}
                         tags={item.tags}
                         like={item.likeCount}
+                        uuid={item.uuid}
                     />
                 ))}
             </div>

@@ -1,9 +1,9 @@
 import {combineReducers } from 'redux';
-import list from './list';
+import List from './list';
 import {title , description , creator , tags , file , id} from './data';
 
 const Reducers = combineReducers({
-    list,
+    List,
     title,
     description,
     creator,
