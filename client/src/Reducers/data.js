@@ -67,3 +67,17 @@ export function file(state = '' , action)
         default: return state;
     }
 }
+
+export function id(state = '' , action)
+{
+    switch(action.type)
+    {
+        case 'ID':
+            return action.payload;
+
+        case 'CLEAR_ID':
+            return state = '';
+            
+        default: return state;
+    }
+}

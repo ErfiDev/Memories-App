@@ -52,14 +52,46 @@ const createPost = async (req , res)=>
     }catch(err){ res.json({msg: err}) }
 }
 
-const editPost = async (req , res)=>{
+const findOnePost = async (req , res)=>{
     let {id: _id} = await req.params;
     let data = await MessageSchema.findById(_id);
     res.status(200).json(data);
 }
 
+const updatePost = async (req , res)=>{
+    let {id} = await req.params;
+    let {title , description , creator , tags , file} = req.body;
+    if(!title || !description || !tags || !creator)
+    {
+        return res.json({
+            msg: 'Please complete the required items' , 
+            status: 406
+        });
+    }
+    else{
+        let update = await MessageSchema.updateOne(
+            {_id: id},
+            {
+                $set: 
+                {
+                    title,
+                    description,
+                    creator,
+                    tags,
+                    file
+                }
+            }
+        ); 
+        res.json({
+            data: update,
+            status: 200
+        });
+    }
+}
+
 module.exports = {
     init,
     createPost,
-    editPost
+    findOnePost,
+    updatePost
 };

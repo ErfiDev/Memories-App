@@ -1,6 +1,6 @@
 import {combineReducers } from 'redux';
 import list from './list';
-import {title , description , creator , tags , file} from './data';
+import {title , description , creator , tags , file , id} from './data';
 
 const Reducers = combineReducers({
     list,
@@ -8,7 +8,8 @@ const Reducers = combineReducers({
     description,
     creator,
     tags,
-    file
+    file,
+    id
 });
 
 export default Reducers;

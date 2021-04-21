@@ -1,4 +1,5 @@
 import React from 'react';
+import {toast} from 'react-toastify';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,8 +10,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FileBase from 'react-file-base64';
 
-import {useDispatch , useSelector} from 'react-redux';
-import {editData, editFile , clearData} from '../../Actions/editData';
+
+import { updateOneHTTP } from '../../services/httpService';
+import { useDispatch , useSelector } from 'react-redux';
+import { editData, editFile , clearData } from '../../Actions/editData';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,16 +39,45 @@ const UpdatePost = ()=>{
     const classes = useStyles();
     const dis = useDispatch();
     let title = useSelector(state => state.title);
+    let id = useSelector(state => state.id);
     let description = useSelector(state => state.description);
     let creator = useSelector(state => state.creator);
     let tags = useSelector(state => state.tags);
+    let file = useSelector(state => state.file);
 
     async function submit(e)
     {
         e.preventDefault();
         try{
-            
-        }catch(err){console.log(err)}
+            let split = tags.split(' ');
+            let data =  {
+                title,
+                description,
+                creator,
+                tags: split,
+                file
+            };
+
+            let response = await updateOneHTTP(id , JSON.stringify(data));
+            let {status} = response;
+            if(status === 200)
+            {
+                dis(clearData());
+                return toast.success('Update Successfully!' , {
+                    position: 'bottom-left',
+                    closeOnClick: true
+                });
+            }
+            if(status === 406)
+            {
+                dis(clearData());
+                return toast.info(response.msg , {
+                    position: 'bottom-left',
+                    closeOnClick: true
+                });
+            }
+        }
+        catch(err){console.log(err)}
     }
 
     return ( 

@@ -17,11 +17,13 @@ Mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
-    }
-).then(()=> App.listen(PORT , ()=> console.log(`Server Starting on ${PORT}`)))
-.catch(err => console.log(err.message));
+    },
+    ()=>{ console.log('db connected!') }
+);
 Mongoose.set('useFindAndModify' , false);
 
 //Route
 const Routes = require('./routes/index');
 App.use('/api' , Routes);
+
+App.listen(PORT , ()=> console.log(`Server Starting on ${PORT}`))

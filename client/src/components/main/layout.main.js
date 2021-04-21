@@ -15,6 +15,7 @@ class LayoutMain extends Component {
 
     render() { 
         const {list} = this.props;
+        
         return (  
             <Fragment>
                 {list.err ? (

@@ -20,5 +20,6 @@ export function clearData()
         await dispatch({type: 'CLEAR_CREATOR'});
         await dispatch({type: 'CLEAR_TAGS'});
         await dispatch({type: 'CLEAR_FILE'});
+        await dispatch({type: 'CLEAR_ID'});
     };
 }
