@@ -138,11 +138,27 @@ async function unLike(req , res){
     }
 }
 
+async function deleteApi(req , res) {
+    const {uuid} = req.params;
+    if(!uuid){
+        return res.json({
+            msg: 'please complete required parameter!',
+            status: 406
+        });
+    }
+
+    await MessageSchema.findOneAndDelete({uuid});
+    res.json({
+        status: 200
+    });
+}
+
 module.exports = {
     init,
     createPost,
     findOnePost,
     updatePost,
     like,
-    unLike
+    unLike,
+    deleteApi
 };

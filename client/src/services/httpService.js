@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "./config.json";
 
-const { get, post, findOne, updateOne, likeOne , unLike } = config;
+const { get, post, findOne, updateOne, likeOne , unLike , deleteOne } = config;
 
 export const getHTTP = () => axios.get(get);
 
@@ -23,4 +23,8 @@ export function like(uuid) {
 
 export function unlike(uuid) {
   return axios.post(`${unLike}/${uuid}`);
+}
+
+export function deletePost(uuid) {
+  return axios.delete(`${deleteOne}/${uuid}`);
 }

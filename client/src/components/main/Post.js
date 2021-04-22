@@ -13,15 +13,16 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import {toast} from 'react-toastify';
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import findOne from "../../Actions/findOne";
 import {like as likePost} from '../../services/httpService';
-import {unlike} from '../../services/httpService';
+import {unlike , deletePost} from '../../services/httpService';
 import useStyles from "./styles";
 
 const Post = ({id,title,description,like,date,creator,file,tags,uuid}) => {
   const classes = useStyles();
   const dis = useDispatch();
+  const list = useSelector(state => state.List);
   let [likeCount , setLikeCount] = useState(like);
   let [toggle , setToggle] = useState(false);
 
@@ -65,6 +66,25 @@ const Post = ({id,title,description,like,date,creator,file,tags,uuid}) => {
       }
       catch(err){console.log(err)}
     }
+  }
+
+  async function deleteHandle(){
+    try{
+      let {data} = await deletePost(uuid);
+      if(data.status === 406){
+        return toast.error(data.msg , {
+          position: 'bottom-left',
+          closeOnClick: true
+        });
+      }
+      toast.success('delete successfully!' , {
+        position: 'bottom-left',
+        closeOnClick: true
+      });
+
+      let filter = list.filter(item => item.uuid !== uuid);
+      dis({type: 'INIT_LIST' , payload: filter})
+    }catch(err){console.log(err)}
   }
 
   return (
@@ -117,7 +137,7 @@ const Post = ({id,title,description,like,date,creator,file,tags,uuid}) => {
           {'    '}
           {likeCount}
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={deleteHandle}>
           <DeleteIcon fontSize="small" /> Delete
         </Button>
       </CardActions>

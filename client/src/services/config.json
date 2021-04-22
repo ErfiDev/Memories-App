@@ -4,5 +4,6 @@
     "findOne": "http://localhost:5555/api/findOne",
     "updateOne": "http://localhost:5555/api/update",
     "likeOne": "http://localhost:5555/api/like",
-    "unLike": "http://localhost:5555/api/unLike"
+    "unLike": "http://localhost:5555/api/unLike",
+    "deleteOne": "http://localhost:5555/api/delete"
 }
