@@ -1,9 +1,9 @@
 {
-    "get": "http://localhost:5555/api/init",
-    "post": "http://localhost:5555/api/create",
-    "findOne": "http://localhost:5555/api/findOne",
-    "updateOne": "http://localhost:5555/api/update",
-    "likeOne": "http://localhost:5555/api/like",
-    "unLike": "http://localhost:5555/api/unLike",
-    "deleteOne": "http://localhost:5555/api/delete"
+    "get": "https://api-memoriies.herokuapp.com/api/init",
+    "post": "https://api-memoriies.herokuapp.com/api/create",
+    "findOne": "https://api-memoriies.herokuapp.com/api/findOne",
+    "updateOne": "https://api-memoriies.herokuapp.com/api/update",
+    "likeOne": "https://api-memoriies.herokuapp.com/api/like",
+    "unLike": "https://api-memoriies.herokuapp.com/api/unLike",
+    "deleteOne": "https://api-memoriies.herokuapp.com/api/delete"
 }
