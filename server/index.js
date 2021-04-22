@@ -24,6 +24,9 @@ Mongoose.set('useFindAndModify' , false);
 
 //Route
 const Routes = require('./routes/index');
+App.get('/' , (req,res)=>{
+    res.send('hello')
+})
 App.use('/api' , Routes);
 
 App.listen(PORT , ()=> console.log(`Server Starting on ${PORT}`))
