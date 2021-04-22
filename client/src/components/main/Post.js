@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import findOne from "../../Actions/findOne";
 import {like as likePost} from '../../services/httpService';
 import {unlike} from '../../services/httpService';
-
 import useStyles from "./styles";
 
 const Post = ({id,title,description,like,date,creator,file,tags,uuid}) => {
@@ -73,7 +72,8 @@ const Post = ({id,title,description,like,date,creator,file,tags,uuid}) => {
       <CardMedia
         className={classes.media}
         image={
-          "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+          !file ? "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+          : file
         }
         title={title}
       />
